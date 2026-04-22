@@ -63,6 +63,13 @@ We propose a **hybrid solar PV + battery + diesel backup system** delivered unde
 Implementing **solar-powered hybrid dewatering** under an OPEX/PPA model delivers **economic, environmental, and operational advantages**. By leveraging proven technologies—PV modules, batteries, VFD pumps, and smart controls—mines can achieve **reliable, cost-efficient, and sustainable dewatering operations**.
 
 ---
+## Developers
+[RSMK](https://github.com/Rsmk27)
+[Srinivas](https://github.com/srinivas4539)
+[Jagadeesh](https://github.com/routhujagadeesh203-debug)
+[Ramu](https://github.com/ramunarlapati-13)
+[Nivedita](https://github.com/)
+[seetaram](https://github.com/)
 
 ## 📚 References
 - [NREL: Integrating Clean Energy in Mining Operations](https://docs.nrel.gov/docs/fy20osti/76156.pdf)
