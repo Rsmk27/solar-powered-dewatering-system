@@ -44,6 +44,11 @@
     box-sizing: border-box;
 }
 
+:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
 html {
     scroll-behavior: smooth;
     font-size: 16px;
@@ -85,6 +90,25 @@ img {
 }
 
 /* Utilities */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--primary);
+    color: #0b1120;
+    padding: 8px 16px;
+    z-index: 1001;
+    transition: top 0.3s ease;
+    border-bottom-right-radius: 8px;
+    font-weight: 600;
+}
+
+.skip-link:focus {
+    top: 0;
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
 .container {
     max-width: var(--container-width);
     margin: 0 auto;
