@@ -9,12 +9,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Toggle Mobile Menu
     hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('active');
+        const isActive = hamburger.classList.toggle('active');
         navMenu.classList.toggle('active');
+
+        // Update ARIA state
+        hamburger.setAttribute('aria-expanded', isActive);
 
         // Animate Hamburger Icon (Simple text toggle or icon swap for now)
         const icon = hamburger.querySelector('i');
-        if (hamburger.classList.contains('active')) {
+        if (isActive) {
             icon.classList.remove('fa-bars');
             icon.classList.add('fa-times');
         } else {
@@ -28,6 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
         link.addEventListener('click', () => {
             hamburger.classList.remove('active');
             navMenu.classList.remove('active');
+            hamburger.setAttribute('aria-expanded', 'false');
             hamburger.querySelector('i').classList.remove('fa-times');
             hamburger.querySelector('i').classList.add('fa-bars');
         });
