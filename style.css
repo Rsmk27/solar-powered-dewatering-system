@@ -264,6 +264,16 @@ img {
 .hamburger {
     display: none;
     cursor: pointer;
+    background: transparent;
+    border: none;
+    color: var(--text-main);
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+}
+
+.hamburger:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
 }
 
 /* Hero Section */
@@ -591,6 +601,7 @@ footer {
     height: 50px;
     background: var(--primary);
     color: #0b1120;
+    border: none;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -602,6 +613,11 @@ footer {
     transition: all 0.3s ease;
     z-index: 999;
     box-shadow: 0 4px 12px rgba(45, 212, 191, 0.4);
+}
+
+#scrollTop:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 4px;
 }
 
 #scrollTop.visible {
