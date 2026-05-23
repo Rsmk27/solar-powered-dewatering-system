@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const navbar = document.querySelector('.navbar');
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
-    const navLinks = document.querySelectorAll('.nav-link');
+    const navLinks = document.querySelectorAll('.nav-item');
     const scrollTopBtn = document.getElementById('scrollTop');
     const revealElements = document.querySelectorAll('.reveal');
 
@@ -35,6 +35,18 @@ document.addEventListener('DOMContentLoaded', () => {
             hamburger.querySelector('i').classList.remove('fa-times');
             hamburger.querySelector('i').classList.add('fa-bars');
         });
+    });
+
+    // Close Mobile Menu on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+            hamburger.setAttribute('aria-expanded', 'false');
+            hamburger.querySelector('i').classList.remove('fa-times');
+            hamburger.querySelector('i').classList.add('fa-bars');
+            hamburger.focus(); // Return focus to hamburger for accessibility
+        }
     });
 
     // Navbar Scroll Effect
