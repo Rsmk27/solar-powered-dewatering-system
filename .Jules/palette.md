@@ -5,3 +5,12 @@
 ## 2026-05-23 - Overlay Accessibility and Invisible Interactive Elements
 **Learning:** Interactive elements hidden with `opacity: 0` are still focusable by keyboard, leading to confusing tab cycles for screen reader and keyboard users. Additionally, custom overlays (like mobile navigation menus) must trap focus or at least support the `Escape` key to be properly accessible and dismissible.
 **Action:** Always combine `opacity: 0` with `visibility: hidden` (or `display: none`) for interactive elements that are not currently meant to be used. Ensure all custom modal/overlay menus can be closed with the `Escape` key and return focus to their trigger.
+## 2026-05-22 - JS Variables vs Class Names in DOM Selection
+**Learning:** When trying to fix a bug in a DOM script that selects a class like `.nav-link`, changing the JS query selector variable to point to a container class like `.nav-item` can easily introduce subtle regressions if the rest of the script relies on the element being an anchor tag (e.g., trying to read an `href`).
+**Action:** Instead of changing the JavaScript selector to accommodate missing classes, fix the HTML by adding the expected classes (like `.nav-link`) to the correct semantic elements (like `<a>`). This maintains the integrity of the JS logic while fixing the behavioral bug.
+## 2026-05-21 - Custom Smooth Scroll Destroys Native Focus
+**Learning:** Overriding native anchor link behavior (e.g. using `e.preventDefault()` for custom smooth scrolling) breaks native browser focus shifting. This causes keyboard users to lose their place when clicking "Skip to content" or navigational links, forcing them to tab from the top of the page again.
+**Action:** Always manually manage focus when overriding native anchor links. Programmatically shift focus to the target element using `targetElement.setAttribute('tabindex', '-1')` and `targetElement.focus()`. Add `[tabindex="-1"]:focus { outline: none; }` to CSS to hide the focus ring on layout containers.
+## 2024-05-19 - Smooth Scroll Accessibility Focus
+**Learning:** Custom JavaScript smooth scrolling solutions that intercept anchor links and prevent default behavior (`e.preventDefault()`) break native browser focus management. When a user clicks a skip link or navigates via keyboard, their focus remains at the origin instead of moving to the target element.
+**Action:** Always manually move focus when implementing custom smooth scrolling by setting `tabindex="-1"` on the target element and calling `.focus({ preventScroll: true })` after triggering the scroll animation.
