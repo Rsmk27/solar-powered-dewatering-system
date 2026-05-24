@@ -71,6 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     behavior: 'smooth'
                 });
 
+                // Shift focus for accessibility
                 // Update focus for accessibility
                 targetElement.setAttribute('tabindex', '-1');
                 targetElement.focus({ preventScroll: true });
