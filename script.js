@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const navbar = document.querySelector('.navbar');
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
-    const navLinks = document.querySelectorAll('.nav-link');
+    const navLinks = document.querySelectorAll('.nav-item');
     const scrollTopBtn = document.getElementById('scrollTop');
     const revealElements = document.querySelectorAll('.reveal');
 
@@ -70,6 +70,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     top: offsetPosition,
                     behavior: 'smooth'
                 });
+
+                // Update focus for accessibility
+                targetElement.setAttribute('tabindex', '-1');
+                targetElement.focus({ preventScroll: true });
             }
         });
     });
