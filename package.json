@@ -1,0 +1,27 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "Mine dewatering is essential to maintain safe and efficient operations in open-pit and underground mining. However, conventional systems rely heavily on diesel generators or unreliable grid power, leading to **high operating expenses, fuel logistics challenges, emissions, and frequent maintenance**.",
+  "main": "script.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rsmk27/solar-powered-dewatering-system.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Rsmk27/solar-powered-dewatering-system/issues"
+  },
+  "homepage": "https://github.com/Rsmk27/solar-powered-dewatering-system#readme",
+  "devDependencies": {
+    "jest": "^30.4.2",
+    "jest-environment-jsdom": "^30.4.1",
+    "jsdom": "^29.1.1",
+    "jsdom-testing-mocks": "^1.16.0"
+  }
+}
