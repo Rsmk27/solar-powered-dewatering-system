@@ -13,6 +13,11 @@ unsigned long motorOnStartTime = 0;
 unsigned long totalMotorOnTime = 0;
 bool motorWasOn = false;
 
+
+// Variables for non-blocking timing
+unsigned long previousMillis = 0;
+const long interval = 70; // Combined original delays (50 + 20)
+
 void setup() {
   servo.attach(9);
   pinMode(LEFT_LDR, INPUT);
@@ -26,50 +31,51 @@ void setup() {
 }
 
 void loop() {
-  int value = analogRead(SOIL_PIN);
-  float percent = 100 - (value * 0.0714);
-  
-  bool motorIsOn = (percent > threshold);
-  
-  // Motor ON/OFF control
-  if (motorIsOn) {
-    digitalWrite(RELAY_PIN, HIGH); 
+  unsigned long currentMillis = millis();
+
+  if (currentMillis - previousMillis >= interval) {
+    previousMillis = currentMillis;
+
+    // Moisture and Motor Control
+    int value = analogRead(SOIL_PIN);
+    float percent = 100 - (value * 0.0714);
     
-    // If motor was OFF and now turned ON, start timing
-    if (!motorWasOn) {
-      motorOnStartTime = millis();
-      motorWasOn = true;
-      Serial.println("Motor ON");
+    bool motorIsOn = (percent > threshold);
+    
+    if (motorIsOn) {
+      digitalWrite(RELAY_PIN, HIGH);
+
+      if (!motorWasOn) {
+        motorOnStartTime = millis();
+        motorWasOn = true;
+        Serial.println("Motor ON");
+      }
+
+      Serial.print("Moisture: ");
+      Serial.print(percent);
+      Serial.print("%, Motor ON Time: ");
+      Serial.print((millis() - motorOnStartTime) / 1000);
+      Serial.println(" seconds");
     }
-    
-    Serial.print("Moisture: ");
-    Serial.print(percent);
-    Serial.print("%, Motor ON Time: ");
-    Serial.print((millis() - motorOnStartTime) / 1000);
-    Serial.println(" seconds");
-  } 
-  else {
-    digitalWrite(RELAY_PIN, LOW);
-    
-    // If motor was ON and now turned OFF, add to total time
-    if (motorWasOn) {
-      totalMotorOnTime += (millis() - motorOnStartTime);
-      motorWasOn = false;
-      Serial.println("Motor OFF");
+    else {
+      digitalWrite(RELAY_PIN, LOW);
+
+      if (motorWasOn) {
+        totalMotorOnTime += (millis() - motorOnStartTime);
+        motorWasOn = false;
+        Serial.println("Motor OFF");
+      }
+
+      Serial.print("Moisture: ");
+      Serial.print(percent);
+      Serial.print("%, Total Motor ON Time: ");
+      Serial.print(totalMotorOnTime / 1000);
+      Serial.println(" seconds");
     }
-    
-    Serial.print("Moisture: ");
-    Serial.print(percent);
-    Serial.print("%, Total Motor ON Time: ");
-    Serial.print(totalMotorOnTime / 1000);
-    Serial.println(" seconds");
+
+    // Solar panel tracking
+    if (digitalRead(LEFT_LDR) == LOW && pos < 135) pos++;
+    if (digitalRead(RIGHT_LDR) == LOW && pos > 45) pos--;
+    servo.write(pos);
   }
-
-  delay(50);
-
-  // Solar panel tracking
-  if (digitalRead(LEFT_LDR) == LOW && pos < 135) pos++;  
-  if (digitalRead(RIGHT_LDR) == LOW && pos > 45) pos--;  
-  servo.write(pos);
-  delay(20);
 }
