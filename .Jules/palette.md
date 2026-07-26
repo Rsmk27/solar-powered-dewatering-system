@@ -1,0 +1,3 @@
+## 2026-07-26 - Mouse Move Hover Effect
+**Learning:** For smooth hover transitions combining CSS variables and JavaScript, rely on explicitly managing state using CSS custom properties via `style.setProperty()` instead of just `:hover` selectors in CSS if Javascript coordinate tracking is involved, as keeping properties synced between JS states (`mouseenter`/`mouseleave`) and CSS prevents buggy states where the pseudo-element gets stuck at opacity=1.
+**Action:** When implementing custom hover states that depend on JS coordinates, always explicitly clear/reset the custom properties on `mouseleave`.

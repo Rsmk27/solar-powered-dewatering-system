@@ -144,5 +144,9 @@ document.addEventListener('DOMContentLoaded', () => {
             // To make it smoother, we can track if mouse is over.
             card.style.setProperty('--opacity', '1');
         });
+
+        card.addEventListener('mouseleave', () => {
+            card.style.setProperty('--opacity', '0');
+        });
     });
 });
