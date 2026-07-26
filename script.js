@@ -15,15 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
         // Update ARIA state
         hamburger.setAttribute('aria-expanded', isActive);
 
-        // Animate Hamburger Icon (Simple text toggle or icon swap for now)
-        const icon = hamburger.querySelector('i');
-        if (isActive) {
-            icon.classList.remove('fa-bars');
-            icon.classList.add('fa-times');
-        } else {
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
-        }
     });
 
     // Close Mobile Menu when link clicked
@@ -32,8 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
             hamburger.classList.remove('active');
             navMenu.classList.remove('active');
             hamburger.setAttribute('aria-expanded', 'false');
-            hamburger.querySelector('i').classList.remove('fa-times');
-            hamburger.querySelector('i').classList.add('fa-bars');
         });
     });
 
@@ -43,8 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
             hamburger.classList.remove('active');
             navMenu.classList.remove('active');
             hamburger.setAttribute('aria-expanded', 'false');
-            hamburger.querySelector('i').classList.remove('fa-times');
-            hamburger.querySelector('i').classList.add('fa-bars');
             hamburger.focus(); // Return focus to hamburger for accessibility
         }
     });
