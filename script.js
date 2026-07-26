@@ -123,15 +123,26 @@ document.addEventListener('DOMContentLoaded', () => {
     // Mouse Move Effect for Glass Cards (Glow effect)
     const cards = document.querySelectorAll('.glass-card');
 
+    let isTicking = false;
     document.addEventListener('mousemove', e => {
-        cards.forEach(card => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
+        if (!isTicking) {
+            window.requestAnimationFrame(() => {
+                // Read phase
+                const rects = Array.from(cards).map(card => card.getBoundingClientRect());
 
-            card.style.setProperty('--mouse-x', `${x}px`);
-            card.style.setProperty('--mouse-y', `${y}px`);
-        });
+                // Write phase
+                cards.forEach((card, index) => {
+                    const rect = rects[index];
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+
+                    card.style.setProperty('--mouse-x', `${x}px`);
+                    card.style.setProperty('--mouse-y', `${y}px`);
+                });
+                isTicking = false;
+            });
+            isTicking = true;
+        }
     });
 
     // Add hover effect initialization to prevent flash
