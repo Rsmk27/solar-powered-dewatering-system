@@ -3,7 +3,7 @@
 #define RELAY_PIN 12
 #define LEFT_LDR 2
 #define RIGHT_LDR 3
-int threshold = 50.00; 
+int threshold = 50;
 
 Servo servo;
 int pos = 90;
