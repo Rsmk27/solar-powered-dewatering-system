@@ -1,0 +1,10 @@
+🔒 Fix Plaintext Email Address Exposure
+
+🎯 What:
+Removed the plaintext email `rsmk65183@gmail.com` from `index.html` and replaced it with an obfuscated representation using `data-user` and `data-domain` attributes. Added JavaScript to construct and assign the `href` dynamically upon button click.
+
+⚠️ Risk:
+Leaving plaintext email addresses in HTML source exposes them to automated spam bots and scrapers, which can lead to high volumes of unwanted spam and potential security risks for the email owner.
+
+🛡️ Solution:
+By utilizing data attributes and reconstructing the `mailto:` link using JavaScript, we hide the raw email from simple HTML parsers and scrapers, while retaining full functionality for legitimate users clicking the "Request Free Assessment" button. Included a Jest setup using `pnpm` and `jsdom` to write a unit test (`email-obfuscation.test.js`) verifying the dynamic email reconstruction script works securely.
