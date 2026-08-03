@@ -120,6 +120,18 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(el);
     });
 
+    // Email Obfuscation
+    const contactBtn = document.getElementById('contact-btn');
+    if (contactBtn) {
+        contactBtn.addEventListener('click', (e) => {
+            const user = contactBtn.getAttribute('data-user');
+            const domain = contactBtn.getAttribute('data-domain');
+            if (user && domain) {
+                window.location.href = `mailto:${user}@${domain}`;
+            }
+        });
+    }
+
     // Mouse Move Effect for Glass Cards (Glow effect)
     const cards = document.querySelectorAll('.glass-card');
 
