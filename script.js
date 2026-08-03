@@ -160,9 +160,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Add hover effect initialization to prevent flash
     cards.forEach(card => {
         card.addEventListener('mouseenter', () => {
-            const glow = card.querySelector('::before'); // Pseudo-elements generally can't be selected this way in JS logic directly, 
-            // but the CSS handles the opacity based on hover.
-            // However, we rely on the CSS variable update above.
 
             // To make it smoother, we can track if mouse is over.
             card.style.setProperty('--opacity', '1');
