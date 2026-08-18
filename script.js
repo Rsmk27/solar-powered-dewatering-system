@@ -7,15 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const scrollTopBtn = document.getElementById('scrollTop');
     const revealElements = document.querySelectorAll('.reveal');
 
-    // Toggle Mobile Menu
-    hamburger.addEventListener('click', () => {
-        const isActive = hamburger.classList.toggle('active');
-        navMenu.classList.toggle('active');
-
-        // Update ARIA state
-        hamburger.setAttribute('aria-expanded', isActive);
-
-        // Animate Hamburger Icon (Simple text toggle or icon swap for now)
+    // Helper function to update the hamburger icon
+    const updateHamburgerIcon = (isActive) => {
         const icon = hamburger.querySelector('i');
         if (isActive) {
             icon.classList.remove('fa-bars');
@@ -24,6 +17,18 @@ document.addEventListener('DOMContentLoaded', () => {
             icon.classList.remove('fa-times');
             icon.classList.add('fa-bars');
         }
+    };
+
+    // Toggle Mobile Menu
+    hamburger.addEventListener('click', () => {
+        const isActive = hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+
+        // Update ARIA state
+        hamburger.setAttribute('aria-expanded', isActive);
+
+        // Animate Hamburger Icon
+        updateHamburgerIcon(isActive);
     });
 
     // Close Mobile Menu when link clicked
@@ -32,8 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
             hamburger.classList.remove('active');
             navMenu.classList.remove('active');
             hamburger.setAttribute('aria-expanded', 'false');
-            hamburger.querySelector('i').classList.remove('fa-times');
-            hamburger.querySelector('i').classList.add('fa-bars');
+            updateHamburgerIcon(false);
         });
     });
 
@@ -43,8 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
             hamburger.classList.remove('active');
             navMenu.classList.remove('active');
             hamburger.setAttribute('aria-expanded', 'false');
-            hamburger.querySelector('i').classList.remove('fa-times');
-            hamburger.querySelector('i').classList.add('fa-bars');
+            updateHamburgerIcon(false);
             hamburger.focus(); // Return focus to hamburger for accessibility
         }
     });
