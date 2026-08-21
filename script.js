@@ -138,21 +138,37 @@ document.addEventListener('DOMContentLoaded', () => {
     // Mouse Move Effect for Glass Cards (Glow effect)
     const cards = document.querySelectorAll('.glass-card');
 
+    let cachedRects = [];
+    const updateCardRects = () => {
+        cachedRects = Array.from(cards).map(card => {
+            const rect = card.getBoundingClientRect();
+            return {
+                left: rect.left + window.scrollX,
+                top: rect.top + window.scrollY
+            };
+        });
+    };
+
+    // Initialize cache and update on resize
+    window.addEventListener('load', updateCardRects);
+    window.addEventListener('resize', updateCardRects);
+    // Initial call in case load already fired or to have immediate state
+    updateCardRects();
+
     let isTicking = false;
     document.addEventListener('mousemove', e => {
-        if (!isTicking) {
+        if (!isTicking && cachedRects.length > 0) {
             window.requestAnimationFrame(() => {
-                // Read phase
-                const rects = Array.from(cards).map(card => card.getBoundingClientRect());
-
                 // Write phase
                 cards.forEach((card, index) => {
-                    const rect = rects[index];
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
+                    const rect = cachedRects[index];
+                    if (rect) {
+                        const x = e.pageX - rect.left;
+                        const y = e.pageY - rect.top;
 
-                    card.style.setProperty('--mouse-x', `${x}px`);
-                    card.style.setProperty('--mouse-y', `${y}px`);
+                        card.style.setProperty('--mouse-x', `${x}px`);
+                        card.style.setProperty('--mouse-y', `${y}px`);
+                    }
                 });
                 isTicking = false;
             });
