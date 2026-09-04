@@ -78,3 +78,5 @@ Implementing **solar-powered hybrid dewatering** under an OPEX/PPA model deliver
 - [Danfoss: Drives for Pumps in Mining](https://www.danfoss.com/en-us/markets/energy-and-natural-resources/dds/drives-for-pumps-in-mining/)
 - [Sulzer: Complete Dewatering Pumps Fleet](https://www.sulzer.com/en/shared/case-studies/complete-dewatering-pumps-fleet-mining)
 - [Renewables Now: Northam Platinum Solar PPA](https://renewablesnow.com/news/northam-platinum-signs-ppa-for-80-mw-solar-project-in-south-africa-870745/)
+
+check [My Portfolio](https://rsmk.tech/) for more info
